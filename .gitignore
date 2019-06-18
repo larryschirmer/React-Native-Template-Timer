@@ -89,3 +89,4 @@ typings/
 
 # Extras
 web-build/report.html
+.expo/packager-info.json
