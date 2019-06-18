@@ -1,7 +1,15 @@
 import React, { useState, useMemo, useCallback, useRef, useEffect } from 'react';
-import { Text, View, StatusBar, TouchableOpacity, Picker } from 'react-native';
-
-import { styles } from './App.styles';
+import { StatusBar, Picker } from 'react-native';
+import {
+  Container,
+  Button,
+  Text,
+  TimerText,
+  PickerContainer,
+  PickerWheel,
+  PickerItem,
+  PickerLabel
+} from './App.styles';
 
 const getRemaining = time => {
   const min = Math.floor(time / 60);
@@ -49,48 +57,39 @@ const App = () => {
   }, [seconds, stop]);
 
   return (
-    <View style={styles.container}>
+    <Container>
       <StatusBar barStyle="light-content" />
       {isRunning ? (
-        <Text style={styles.timerText}>{formattedTime}</Text>
+        <TimerText>{formattedTime}</TimerText>
       ) : (
-        <View style={styles.pickerContainer}>
-          <Picker
-            style={styles.picker}
-            itemStyle={styles.pickerItem}
+        <PickerContainer>
+          <PickerWheel
+            itemStyle={PickerItem}
             selectedValue={selectedMinutes}
             onValueChange={itemValue => setSelectedMinutes(itemValue)}
           >
             {AVAILABLE_MINUTES.map(value => (
               <Picker.Item key={`${value}-min`} label={value} value={value} />
             ))}
-          </Picker>
-          <Text style={styles.pickerItem}>minutes</Text>
-          <Picker
-            style={styles.picker}
-            itemStyle={styles.pickerItem}
+          </PickerWheel>
+          <PickerLabel>minutes</PickerLabel>
+          <PickerWheel
+            itemStyle={PickerItem}
             selectedValue={selectedSeconds}
             onValueChange={itemValue => setSelectedSeconds(itemValue)}
           >
             {AVAILABLE_SECONDS.map(value => (
               <Picker.Item key={`${value}-sec`} label={value} value={value} />
             ))}
-          </Picker>
-          <Text style={styles.pickerItem}>seconds</Text>
-        </View>
+          </PickerWheel>
+          <PickerLabel>seconds</PickerLabel>
+        </PickerContainer>
       )}
 
-      <TouchableOpacity
-        onPress={isRunning ? stop : start}
-        style={isRunning ? { ...styles.button, ...styles.buttonStop } : styles.button}
-      >
-        <Text
-          style={isRunning ? { ...styles.buttonText, ...styles.buttonTextStop } : styles.buttonText}
-        >
-          {isRunning ? 'Stop' : 'Start'}
-        </Text>
-      </TouchableOpacity>
-    </View>
+      <Button running={isRunning} onPress={isRunning ? stop : start}>
+        <Text running={isRunning}>{isRunning ? 'Stop' : 'Start'}</Text>
+      </Button>
+    </Container>
   );
 };
 

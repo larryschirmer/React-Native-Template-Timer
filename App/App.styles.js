@@ -1,48 +1,51 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
+import styled from 'styled-components';
 
 const screen = Dimensions.get('window');
 const halfScreenWidth = screen.width / 2;
 
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#07121b',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  button: {
-    width: halfScreenWidth,
-    height: halfScreenWidth,
-    borderWidth: 10,
-    borderColor: '#89aaff',
-    borderRadius: halfScreenWidth,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 30
-  },
-  buttonStop: {
-    borderColor: '#ff851b'
-  },
-  buttonText: {
-    fontSize: 45,
-    color: '#89aaff'
-  },
-  buttonTextStop: {
-    color: '#ff851b'
-  },
-  timerText: {
-    color: '#fff',
-    fontSize: 90
-  },
-  picker: {
-    width: 50
-  },
-  pickerItem: {
-    color: '#fff',
-    fontSize: 20
-  },
-  pickerContainer: {
-    flexDirection: 'row',
-    alignItems: 'center'
-  }
-});
+export const Container = styled.View`
+  background-color: #07121b;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Button = styled.TouchableOpacity`
+  width: ${halfScreenWidth};
+  height: ${halfScreenWidth};
+  margin-top: 30px;
+  border: 10px solid ${({ running }) => (running ? '#ff851b' : '#89aaff')};
+  border-radius: ${halfScreenWidth};
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Text = styled.Text`
+  font-size: 45px;
+  color: ${({ running }) => (running ? '#ff851b' : '#89aaff')};
+`;
+
+export const TimerText = styled.Text`
+  color: #fff;
+  font-size: 90px;
+`;
+
+export const PickerContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const PickerWheel = styled.Picker`
+  width: 50px;
+`;
+
+export const PickerItem = {
+  color: '#fff',
+  fontSize: 20
+};
+
+export const PickerLabel = styled.Text`
+  color: #fff;
+  font-size: 20px;
+`;
