@@ -1,12 +1,16 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StatusBar, TouchableOpacity } from 'react-native';
 
 import { styles } from './App.styles';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <StatusBar barStyle="light-content" />
+      <Text style={styles.timerText}>00:05</Text>
+      <TouchableOpacity onPress={() => null} style={styles.button}>
+        <Text style={styles.buttonText}>Start</Text>
+      </TouchableOpacity>
     </View>
   );
 }
