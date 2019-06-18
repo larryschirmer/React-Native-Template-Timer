@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#07121b',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   button: {
     width: halfScreenWidth,
@@ -18,14 +18,31 @@ export const styles = StyleSheet.create({
     borderRadius: halfScreenWidth,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 30,
+    marginTop: 30
+  },
+  buttonStop: {
+    borderColor: '#ff851b'
   },
   buttonText: {
     fontSize: 45,
-    color: '#89aaff',
+    color: '#89aaff'
+  },
+  buttonTextStop: {
+    color: '#ff851b'
   },
   timerText: {
     color: '#fff',
-    fontSize: 90,
+    fontSize: 90
   },
+  picker: {
+    width: 50
+  },
+  pickerItem: {
+    color: '#fff',
+    fontSize: 20
+  },
+  pickerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  }
 });
