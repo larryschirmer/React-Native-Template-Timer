@@ -3,7 +3,7 @@ import { StatusBar, Picker } from 'react-native';
 import {
   Container,
   Button,
-  Text,
+  RegularText,
   TimerText,
   PickerContainer,
   PickerWheel,
@@ -11,7 +11,7 @@ import {
   PickerLabel
 } from './App.styles';
 
-const getRemaining = time => {
+const getRemaining = (time: number) => {
   const min = Math.floor(time / 60);
   const sec = time - min * 60;
 
@@ -25,7 +25,7 @@ const AVAILABLE_SECONDS = [...new Array(60).fill(0).map((_val, i) => `${i}`)];
 const AVAILABLE_MINUTES = [...new Array(10).fill(0).map((_val, i) => `${i}`)];
 
 const App = () => {
-  const interval = useRef(null);
+  const interval = useRef(0);
   const [seconds, setSeconds] = useState(9);
   const [isRunning, setIsRunning] = useState(false);
   const [selectedSeconds, setSelectedSeconds] = useState('5');
@@ -45,7 +45,7 @@ const App = () => {
 
   const stop = useCallback(() => {
     clearInterval(interval.current);
-    interval.currnet = null;
+    interval.current = 0;
     setSeconds(9);
     setIsRunning(false);
   }, []);
@@ -62,32 +62,32 @@ const App = () => {
       {isRunning ? (
         <TimerText>{formattedTime}</TimerText>
       ) : (
-        <PickerContainer>
-          <PickerWheel
-            itemStyle={PickerItem}
-            selectedValue={selectedMinutes}
-            onValueChange={itemValue => setSelectedMinutes(itemValue)}
-          >
-            {AVAILABLE_MINUTES.map(value => (
-              <Picker.Item key={`${value}-min`} label={value} value={value} />
-            ))}
-          </PickerWheel>
-          <PickerLabel>minutes</PickerLabel>
-          <PickerWheel
-            itemStyle={PickerItem}
-            selectedValue={selectedSeconds}
-            onValueChange={itemValue => setSelectedSeconds(itemValue)}
-          >
-            {AVAILABLE_SECONDS.map(value => (
-              <Picker.Item key={`${value}-sec`} label={value} value={value} />
-            ))}
-          </PickerWheel>
-          <PickerLabel>seconds</PickerLabel>
-        </PickerContainer>
-      )}
+          <PickerContainer>
+            <PickerWheel
+              itemStyle={PickerItem}
+              selectedValue={selectedMinutes}
+              onValueChange={itemValue => setSelectedMinutes(itemValue)}
+            >
+              {AVAILABLE_MINUTES.map(value => (
+                <Picker.Item key={`${value}-min`} label={value} value={value} />
+              ))}
+            </PickerWheel>
+            <PickerLabel>minutes</PickerLabel>
+            <PickerWheel
+              itemStyle={PickerItem}
+              selectedValue={selectedSeconds}
+              onValueChange={itemValue => setSelectedSeconds(itemValue)}
+            >
+              {AVAILABLE_SECONDS.map(value => (
+                <Picker.Item key={`${value}-sec`} label={value} value={value} />
+              ))}
+            </PickerWheel>
+            <PickerLabel>seconds</PickerLabel>
+          </PickerContainer>
+        )}
 
       <Button running={isRunning} onPress={isRunning ? stop : start}>
-        <Text running={isRunning}>{isRunning ? 'Stop' : 'Start'}</Text>
+        <RegularText running={isRunning}>{isRunning ? 'Stop' : 'Start'}</RegularText>
       </Button>
     </Container>
   );

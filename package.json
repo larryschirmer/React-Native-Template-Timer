@@ -8,7 +8,6 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@types/styled-components": "^4.1.16",
     "expo": "^33.0.0",
     "react": "16.8.3",
     "react-dom": "^16.8.6",
@@ -19,6 +18,7 @@
   "devDependencies": {
     "@types/react": "^16.8.20",
     "@types/react-native": "^0.57.63",
+    "@types/styled-components": "^4.1.16",
     "babel-preset-expo": "^5.1.1",
     "eslint": "5.3.0",
     "eslint-config-airbnb": "17.1.0",
